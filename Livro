@@ -1,0 +1,48 @@
+package Biblioteca;
+
+import java.util.ArrayList;
+
+public class Livro {
+    private String titulo;
+    private String autor;
+    private String isbn;
+
+    // Lista estática para guardar todos os livros
+    private static ArrayList<Livro> livrosCadastrados = new ArrayList<>();
+
+    public Livro(String titulo, String autor, String isbn) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.isbn = isbn;
+    }
+
+    // Getters
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    // Método para adicionar livro na lista estática
+    public static void adicionarLivro(Livro livro) {
+        livrosCadastrados.add(livro);
+    }
+
+    // Método para listar todos os livros cadastrados
+    public static void listarLivros() {
+        if (livrosCadastrados.isEmpty()) {
+            System.out.println("Nenhum livro cadastrado.");
+        } else {
+            System.out.println("Livros cadastrados:");
+            for (Livro l : livrosCadastrados) {
+                System.out.println("- " + l.getTitulo() + " | Autor: " + l.getAutor() + " | ISBN: " + l.getIsbn());
+            }
+        }
+    }
+}
