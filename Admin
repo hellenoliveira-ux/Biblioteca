@@ -24,7 +24,7 @@ public class Admin extends Pessoa {
 
     @Override
     void apresentar() {
-        System.out.println("Olá, sou o administrador " + getNome() + ", cargo: " + getCargo());
+        System.out.println("Olá " + getNome());
     }
 
     public static void adicionarCliente(Cliente cliente) {
