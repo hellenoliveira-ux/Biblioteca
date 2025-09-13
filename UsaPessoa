@@ -1,0 +1,77 @@
+package Biblioteca;
+
+import java.util.Scanner;
+
+public class UsaPessoa {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        Admin admin = null;
+
+        while (true) {
+            System.out.println("\n=== Cadastro ===");
+            System.out.print("Digite seu nome: ");
+            String nome = scanner.nextLine();
+
+            System.out.print("Digite seu email: ");
+            String email = scanner.nextLine();
+
+            System.out.print("Digite sua senha: ");
+            String senha = scanner.nextLine();
+
+            if (email.endsWith("@admin.com")) {
+                System.out.print("Digite seu cargo: ");
+                String cargo = scanner.nextLine();
+
+                admin = new Admin(nome, email, senha, cargo);
+                admin.apresentar();
+            } else {
+                System.out.print("Digite seu endereço: ");
+                String endereco = scanner.nextLine();
+
+                Cliente cliente = new Cliente(nome, email, senha, endereco);
+                cliente.apresentar();
+            }
+
+            System.out.print("\nDeseja cadastrar outro usuário? (s/n): ");
+            String resposta = scanner.nextLine();
+
+            if (!resposta.equalsIgnoreCase("s")) {
+                break;
+            }
+        }
+
+        if (admin != null) {
+            System.out.println("\n=== Admin Listando Clientes ===");
+            admin.listarClientes();
+
+            // Permitir cadastrar livros
+            System.out.print("\nDeseja cadastrar livros? (s/n): ");
+            String respLivro = scanner.nextLine();
+
+            while (respLivro.equalsIgnoreCase("s")) {
+                System.out.print("Título do livro: ");
+                String titulo = scanner.nextLine();
+
+                System.out.print("Autor do livro: ");
+                String autor = scanner.nextLine();
+
+                System.out.print("ISBN do livro: ");
+                String isbn = scanner.nextLine();
+
+                admin.cadastrarLivro(titulo, autor, isbn);
+
+                System.out.print("Cadastrar outro livro? (s/n): ");
+                respLivro = scanner.nextLine();
+            }
+
+            System.out.println("\n=== Lista de livros cadastrados ===");
+            admin.listarLivros();
+
+        } else {
+            System.out.println("\nNenhum administrador cadastrado para listar clientes ou cadastrar livros.");
+        }
+
+        scanner.close();
+    }
+}
