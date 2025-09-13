@@ -1,0 +1,28 @@
+package Biblioteca;
+
+public class Cliente extends Pessoa {
+    private String endereco;
+
+    public Cliente(String nome, String email, String senha, String endereco) {
+        setNome(nome);
+        setEmail(email);
+        setSenha(senha);
+        this.endereco = endereco;
+
+        // Adiciona o cliente na lista estática do Admin
+        Admin.adicionarCliente(this);
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    @Override
+    void apresentar() {
+        System.out.println("Bem-vindo à biblioteca " + getNome());
+    }
+}
