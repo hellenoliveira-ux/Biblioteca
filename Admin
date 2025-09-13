@@ -1,0 +1,56 @@
+package Biblioteca;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Admin extends Pessoa {
+    private String cargo;
+    private static ArrayList<Cliente> clientes = new ArrayList<>();
+
+    public Admin(String nome, String email, String senha, String cargo) {
+        setNome(nome);
+        setEmail(email);
+        setSenha(senha);
+        this.cargo = cargo;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    @Override
+    void apresentar() {
+        System.out.println("Olá, sou o administrador " + getNome() + ", cargo: " + getCargo());
+    }
+
+    public static void adicionarCliente(Cliente cliente) {
+        clientes.add(cliente);
+    }
+
+    public void listarClientes() {
+        System.out.println("Lista de clientes:");
+        if (clientes.isEmpty()) {
+            System.out.println("Nenhum cliente cadastrado.");
+        } else {
+            for (Cliente c : clientes) {
+                System.out.println("- " + c.getNome() + " | " + c.getEmail() + " | " + c.getEndereco());
+            }
+        }
+    }
+
+    // Método para cadastrar livro
+    public void cadastrarLivro(String titulo, String autor, String isbn) {
+        Livro livro = new Livro(titulo, autor, isbn);
+        Livro.adicionarLivro(livro);
+        System.out.println("Livro cadastrado com sucesso: " + titulo);
+    }
+
+    // Método para listar livros (chama o método estático da classe Livro)
+    public void listarLivros() {
+        Livro.listarLivros();
+    }
+}
